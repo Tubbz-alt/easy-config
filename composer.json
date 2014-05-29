@@ -1,0 +1,20 @@
+{
+    "name": "shazam/common/conf",
+    "description": "Reads Yaml config files",
+    "type": "helper",
+    "authors": [
+        {
+            "name": "Tom Koukoulis",
+            "email": "tom.koukoulis@shazam.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Common\\Conf\\Tests\\": ["tests/unit/cases", "tests/unit"],
+            "Common\\Conf\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/yaml": "2.4.*"
+    }
+}

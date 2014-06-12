@@ -2,7 +2,6 @@
 
 namespace Common;
 
-use Exception;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml;
 use Common\Exceptions\InvalidConfigFileException;

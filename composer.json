@@ -1,5 +1,5 @@
 {
-    "name": "shazam/common/conf",
+    "name": "shazam/common-config",
     "description": "Reads Yaml config files",
     "type": "helper",
     "authors": [

@@ -6,15 +6,22 @@
         {
             "name": "Tom Koukoulis",
             "email": "tom.koukoulis@shazam.com"
+        },
+        {
+            "name": "Toni Lopez",
+            "email": "toni.lopez@shazam.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Common\\Conf\\Tests\\": ["tests/unit/cases", "tests/unit"],
-            "Common\\Conf\\": "src/"
+            "Common\\Tests\\": "tests/",
+            "Common\\": "src/"
         }
     },
     "require": {
         "symfony/yaml": "2.4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
     }
 }

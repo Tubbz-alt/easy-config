@@ -6,23 +6,10 @@ required_fields:
   open:
   stable:
     - stepsToStabilise
-  resolved:
-    - resolution
-    - stepsToStabilise
-  closed:
-    - cause
-    - resolution
-    - stepsToStabilise
 
 incident:
   default:
     template: incident.twig
-    widgets:
-      - media
-      - comment
-      - state
-      - alert
-      - activity
   review:
     template: review.twig
     widgets:

@@ -76,11 +76,11 @@ class Config
         return $config;
     }
 
-    public function reloadConfigFiles()
+    public function reloadConfig()
     {
         $this->flush();
 
-        $this->loadConfigFiles($this->configFiles);
+        $this->loadConfig($this->configFiles);
     }
 
     public function flush()
@@ -112,7 +112,7 @@ class Config
         }
 
         try {
-            $config = $yaml->parse(file_get_contents($configFile));
+            $config = $this->parser->parse(file_get_contents($configFile));
         } catch (ParseException $e) {
             $line = $e->getParsedLine();
             throw new InvalidConfigFileException(

@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright 2014 Shazam Entertainment Limited
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+ * file except in compliance with the License.
+ *
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under 
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific 
+ * language governing permissions and limitations under the License.
+ *
+ * @author toni lopez <toni.lopez@shazam.com>
+ * @package Common
+ */
+
 namespace Common;
 
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -14,14 +31,31 @@ class Config
      * @var Config|null
      */
     private static $instance = null;
+
     /**
      * @var Yaml\Parser
      */
     private $parser;
+
+    /**
+     * @var $configFiles
+     */
     private $configFiles = array();
+
+    /**
+     * The data from config files.
+     * @var array
+     */
     private $config = array();
+
+    /**
+     * @param boolean
+     */
     private $useCache = true;
 
+    /**
+     * @param Yaml\Parser $parser
+     */
     private function __construct(Yaml\Parser $parser)
     {
         $this->parser = $parser;
@@ -39,6 +73,10 @@ class Config
         return self::$instance;
     }
 
+    /**
+     * Sets to the config property the merged content from all the config files.
+     * @param array $configFiles
+     */
     public function loadConfig(array $configFiles)
     {
         $this->configFiles = $configFiles;
@@ -51,6 +89,9 @@ class Config
         }
     }
 
+    /**
+     * @param boolean $useCache
+     */
     public function setUseCache($useCache)
     {
         $this->useCache = $useCache;
@@ -75,6 +116,9 @@ class Config
         return $config;
     }
 
+    /**
+     * Flushes cache (if used) and loads again all the config files loaded previously.
+     */
     public function reloadConfig()
     {
         $this->flush();
@@ -82,6 +126,9 @@ class Config
         $this->loadConfig($this->configFiles);
     }
 
+    /**
+     * If cache is used, flushes it. Otherwise it just empties config property.
+     */
     public function flush()
     {
         if ($this->useCache) {
@@ -94,6 +141,8 @@ class Config
     }
 
     /**
+     * Loads a config file into config property. If cache is used, first check if the config
+     * file was previously loaded.
      * @throws FileNotFoundException
      * @throws InvalidConfigFileException
      */

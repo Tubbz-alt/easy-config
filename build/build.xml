@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="common-config" basedir="." default="install-dependencies">
+
+    <target name="install-dependencies">
+        <exec command="/usr/local/bin/composer.phar install -n --optimize-autoloader --no-dev --working-dir '..'" passthru="true" />
+    </target>
+</project>

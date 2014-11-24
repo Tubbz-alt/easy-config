@@ -14,10 +14,10 @@
  * language governing permissions and limitations under the License.
  *
  * @author toni lopez <toni.lopez@shazam.com>
- * @package Common\Exceptions
+ * @package EasyConfig\Exceptions
  */
 
-namespace Common\Exceptions;
+namespace EasyConfig\Exceptions;
 
 use Exception;
 

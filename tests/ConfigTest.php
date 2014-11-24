@@ -14,13 +14,13 @@
  * language governing permissions and limitations under the License.
  *
  * @author toni lopez <toni.lopez@shazam.com>
- * @package Common\Tests
+ * @package EasyConfig\Tests
  */
 
-namespace Common\Tests;
+namespace EasyConfig\Tests;
 
 use PHPUnit_Framework_TestCase;
-use Common\Config;
+use EasyConfig\Config;
 
 class ConfigTest extends PHPUnit_Framework_TestCase
 {
@@ -71,7 +71,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider providerCache
-     * @expectedException Common\Exceptions\FileNotFoundException
+     * @expectedException EasyConfig\Exceptions\FileNotFoundException
      */
     public function testLoadFileUnexistingFile($cache)
     {
@@ -81,7 +81,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider providerCache
-     * @expectedException Common\Exceptions\InvalidConfigFileException
+     * @expectedException EasyConfig\Exceptions\InvalidConfigFileException
      */
     public function testLoadFileInvalidYaml($cache)
     {
@@ -128,7 +128,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider providerCache
-     * @expectedException Common\Exceptions\KeyNotFoundException
+     * @expectedException EasyConfig\Exceptions\KeyNotFoundException
      */
     public function testFetchNotFound($cache)
     {

@@ -15,16 +15,16 @@
  *
  * @author Tom Koukoulis <tom.koukoulis@shazam.com>
  * @author toni lopez <toni.lopez@shazam.com>
- * @package Common
+ * @package EasyConfig
  */
 
-namespace Common;
+namespace EasyConfig;
 
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml;
-use Common\Exceptions\InvalidConfigFileException;
-use Common\Exceptions\FileNotFoundException;
-use Common\Exceptions\KeyNotFoundException;
+use EasyConfig\Exceptions\InvalidConfigFileException;
+use EasyConfig\Exceptions\FileNotFoundException;
+use EasyConfig\Exceptions\KeyNotFoundException;
 
 class Config
 {

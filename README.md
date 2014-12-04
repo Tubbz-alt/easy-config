@@ -1,4 +1,4 @@
-# Common Config
+# Easy Config
 Simple PHP library to read from yaml files.
 
 Usage
@@ -7,7 +7,7 @@ Usage
 Place the following code in the constructor of your class or the superclass:
 
 ```php
-use Common\Config;
+use EasyConfig\Config;
 
 $config = Config::getInstance();
 $config->setUseCache(false); //Default is true, so no need to specify if you want to use APC

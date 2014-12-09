@@ -92,7 +92,18 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider providerCache
      */
-    public function testLoadValidConfigFile($cache)
+    public function testLoadValidConfigFileAsString($cache)
+    {
+        $this->config->setUseCache($cache);
+        $this->config->loadConfig(__DIR__ . self::$VALID_FILE);
+
+        $this->assertSame($this->configContent, $this->config->fetch());
+    }
+
+    /**
+     * @dataProvider providerCache
+     */
+    public function testLoadValidConfigFileAsArray($cache)
     {
         $this->config->setUseCache($cache);
         $this->config->loadConfig(array(__DIR__ . self::$VALID_FILE));

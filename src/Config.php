@@ -76,10 +76,14 @@ class Config
 
     /**
      * Sets to the config property the merged content from all the config files.
-     * @param array $configFiles
+     * @param array|string $configFiles
      */
-    public function loadConfig(array $configFiles)
+    public function loadConfig($configFiles)
     {
+        if (!is_array($configFiles)) {
+            $configFiles = array($configFiles);
+        }
+
         $this->configFiles = $configFiles;
 
         foreach ($configFiles as $configFile) {

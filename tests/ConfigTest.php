@@ -25,6 +25,7 @@ use EasyConfig\Config;
 class ConfigTest extends PHPUnit_Framework_TestCase
 {
     private static $VALID_FILE = '/valid-properties.yml';
+    private static $VALID_FILE_2 = '/valid-properties-2.yml';
     private static $INVALID_FILE = '/invalid-properties.yml';
     private static $UNEXISTING_FILE = '/unexisting-properties.yml';
     private $config;
@@ -109,6 +110,45 @@ class ConfigTest extends PHPUnit_Framework_TestCase
         $this->config->loadConfig(array(__DIR__ . self::$VALID_FILE));
 
         $this->assertSame($this->configContent, $this->config->fetch());
+    }
+
+    /**
+     * @dataProvider providerCache
+     */
+    public function testLoadMultipleFiles($cache)
+    {
+        $configContent = array(
+            'required_fields' => array(
+                'default' => array('summary', 'reporter', 'status', 'assignee'),
+                'open' => null,
+                'stable' => array('stepsToStabilise'),
+                'closed' => array('cause')
+            ),
+            'incident' => array(
+                'default' => array(
+                    'template' => 'incident.twig'
+                ),
+                'review' => array(
+                    'template' => 'review.twig',
+                    'widgets' => array('media')
+                )
+            ),
+            'incident_list' => array(
+                'default' => array(
+                    'template' => 'incidents.twig',
+                    'widgets' => array(),
+                    'host' => 'localhost'
+                )
+            ),
+            'db' => array('user' => 'root')
+        );
+
+        $this->config->setUseCache($cache);
+        $this->config->loadConfig(
+            array(__DIR__ . self::$VALID_FILE, __DIR__ . self::$VALID_FILE_2)
+        );
+
+        $this->assertSame($configContent, $this->config->fetch());
     }
 
     /**

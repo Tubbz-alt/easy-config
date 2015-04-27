@@ -87,7 +87,7 @@ class Config
         $this->configFiles = $configFiles;
 
         foreach ($configFiles as $configFile) {
-            $this->config = array_merge(
+            $this->config = array_merge_recursive(
                 $this->config,
                 $this->loadConfigFile($configFile)
             );

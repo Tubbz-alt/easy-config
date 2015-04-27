@@ -1,0 +1,10 @@
+required_fields:
+  default:
+    - assignee
+  closed:
+    - cause
+incident_list:
+  default:
+    host: localhost
+db:
+  user: root

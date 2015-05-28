@@ -115,45 +115,6 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider providerCache
      */
-    public function testLoadMultipleFiles($cache)
-    {
-        $configContent = array(
-            'required_fields' => array(
-                'default' => array('summary', 'reporter', 'status', 'assignee'),
-                'open' => null,
-                'stable' => array('stepsToStabilise'),
-                'closed' => array('cause')
-            ),
-            'incident' => array(
-                'default' => array(
-                    'template' => 'incident.twig'
-                ),
-                'review' => array(
-                    'template' => 'review.twig',
-                    'widgets' => array('media')
-                )
-            ),
-            'incident_list' => array(
-                'default' => array(
-                    'template' => 'incidents.twig',
-                    'widgets' => array(),
-                    'host' => 'localhost'
-                )
-            ),
-            'db' => array('user' => 'root')
-        );
-
-        $this->config->setUseCache($cache);
-        $this->config->loadConfig(
-            array(__DIR__ . self::$VALID_FILE, __DIR__ . self::$VALID_FILE_2)
-        );
-
-        $this->assertSame($configContent, $this->config->fetch());
-    }
-
-    /**
-     * @dataProvider providerCache
-     */
     public function testFlush($cache)
     {
         $this->config->setUseCache($cache);

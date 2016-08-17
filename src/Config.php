@@ -1,20 +1,21 @@
 <?php
 
 /**
- * Copyright 2014 Shazam Entertainment Limited
+ * Copyright 2016 Shazam Entertainment Limited
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
  * file except in compliance with the License.
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under 
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific 
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  *
- * @author Tom Koukoulis <tom.koukoulis@shazam.com>
  * @author toni lopez <toni.lopez@shazam.com>
+ * @author Brad Bonkoski <brad.bonkoski@shazam.com>
+ *
  * @package EasyConfig
  */
 
@@ -103,6 +104,8 @@ class Config
     }
 
     /**
+     * Fetches a single value from a key chain of N depth
+     * @return array|mixed
      * @throws KeyNotFoundException
      */
     public function fetch(/* $key1, $key2, ... $keyN */)
@@ -138,10 +141,11 @@ class Config
     {
         if ($this->useCache) {
             foreach ($this->configFiles as $configFile) {
-                \apc_delete($configFile);
+                if (function_exists('apc_delete')) {
+                    \apc_delete($configFile);
+                }
             }
         }
-
         $this->config = array();
     }
 
@@ -154,7 +158,12 @@ class Config
     private function loadConfigFile($configFile)
     {
         if ($this->useCache) {
-            $config = apc_fetch($configFile);
+            if (function_exists('apc_fetch')) {
+                $config = apc_fetch($configFile);
+            } elseif (function_exists('apcu_fetch')) {
+                $config = apcu_fetch($configFile);
+            }
+
             if (!empty($config)) {
                 return $config;
             }
@@ -174,7 +183,11 @@ class Config
         }
 
         if ($this->useCache) {
-            apc_store($configFile, $config);
+            if (function_exists('apc_store')) {
+                apc_store($configFile, $config);
+            } elseif (function_exists('apcu_store')) {
+                apcu_store($configFile, $config);
+            }
         }
 
         return $config;

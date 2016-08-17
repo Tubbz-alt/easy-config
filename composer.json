@@ -4,10 +4,12 @@
     "type": "helper",
     "authors": [
         {
-            "name": "Tom Koukoulis",
-            "email": "tom.koukoulis@shazam.com",
             "name": "Toni Lopez",
             "email": "toni.lopez@shazam.com"
+        },
+        {
+            "name": "Brad Bonkoski",
+            "email": "brad.bonkoski@shazam.com"
         }
     ],
     "license": "Apache-2.0",

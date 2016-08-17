@@ -1,5 +1,5 @@
 {
-    "name": "shazam/easy-config2",
+    "name": "Shazam/easy-config2",
     "description": "Reads Yaml config files",
     "keywords": ["yaml", "config"],
     "type": "helper",

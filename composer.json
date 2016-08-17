@@ -1,6 +1,7 @@
 {
-    "name": "shazam/easy-config",
+    "name": "shazam/easy-config2",
     "description": "Reads Yaml config files",
+    "keywords": ["yaml", "config"],
     "type": "helper",
     "authors": [
         {
@@ -20,7 +21,8 @@
         }
     },
     "require": {
-        "symfony/yaml": "2.4.*"
+      "php": ">=5.3",
+      "symfony/yaml": "2.4.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
